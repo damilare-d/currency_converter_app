@@ -11,6 +11,7 @@ class ExchangeState {
   final CodesModel? codes;
   final String? error;
 
+
   ExchangeState({
     this.loading = false,
     this.latestRates,

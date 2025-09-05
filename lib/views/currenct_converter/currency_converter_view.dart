@@ -1,5 +1,6 @@
 import 'package:currency_converter_app/views/currenct_converter/widget/currency_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/utils/flag_utils.dart';
 
@@ -26,8 +27,11 @@ class _CurrencyConverterViewState extends ConsumerState<CurrencyConverterView> {
   }
 
   void _convert() {
-    ref.read(exchangeProvider.notifier)
-        .fetchConversion( fromCode,toCode,);
+    final amount = double.tryParse(_amountController.text);
+    if (amount != null && amount > 0) {
+      ref.read(exchangeProvider.notifier)
+          .fetchConversion(fromCode, toCode);
+    }
   }
 
   void _showCurrencyPicker({required bool isFrom}) {
@@ -158,6 +162,9 @@ class _CurrencyConverterViewState extends ConsumerState<CurrencyConverterView> {
                             child: TextField(
                               controller: _amountController,
                               onChanged: (_) => _convert(),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                              ],
                               textAlign: TextAlign.end,
                               style: TextStyle(
                                 fontSize: 20, fontFamily: 'Roboto',
@@ -250,7 +257,7 @@ class _CurrencyConverterViewState extends ConsumerState<CurrencyConverterView> {
                             child: Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                state.conversion?.rate.toStringAsFixed(2) ?? "0.00",
+                                ((state.conversion?.rate ?? 0) * (double.tryParse(_amountController.text) ?? 0)).toStringAsFixed(2),
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     fontSize: 20, fontFamily: 'Roboto',
@@ -279,8 +286,7 @@ class _CurrencyConverterViewState extends ConsumerState<CurrencyConverterView> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      "1 $fromCode = ${(state.conversion!.rate / (double.tryParse(_amountController.text) ?? 1)).toStringAsFixed(2)} $toCode",
-                      textAlign: TextAlign.start,
+                      "1 $fromCode = ${state.conversion!.rate.toStringAsFixed(4)} $toCode",      textAlign: TextAlign.start,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

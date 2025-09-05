@@ -6,6 +6,8 @@ Built with **Riverpod (MVVM)**, following **KISS** and **DRY** principles for ma
 ---
 
 ## 🎥 Demo Video
+https://github.com/user-attachments/assets/16be939e-000d-4aed-bcee-d337820ea020
+
 👉 [Watch the demo](YOUR_VIDEO_LINK_HERE)
 
 ---
@@ -17,6 +19,9 @@ Built with **Riverpod (MVVM)**, following **KISS** and **DRY** principles for ma
 </p>
 
 ---
+
+
+
 
 ## 🚀 Live Demo
 👉 [Try it out here](YOUR_DEPLOYED_LINK_HERE)

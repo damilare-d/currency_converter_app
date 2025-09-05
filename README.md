@@ -6,7 +6,9 @@ Built with **Riverpod (MVVM)**, following **KISS** and **DRY** principles for ma
 ---
 
 ## 🎥 Demo Video
-https://github.com/user-attachments/assets/16be939e-000d-4aed-bcee-d337820ea020
+<p align="center">
+Uploading coinbase5.mp4…
+</p>
 
 👉 [Watch the demo](YOUR_VIDEO_LINK_HERE)
 
